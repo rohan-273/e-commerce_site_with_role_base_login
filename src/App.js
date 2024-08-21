@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import Product from "./components/Product";
+import Item from "./components/Item";
+import Cart from "./components/Cart";
+import Contact from "./components/Contact";
+import Rental from "./components/Rental";
+import Category from "./components/Category";
+import PrivateRoute from "./components/PrivateRoute";
+import Topbar from "./components/Topbar";
+import { LOGIN_SUCCESS } from "./redux/actions/authActions";
 
-function App() {
+const App = () => {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      dispatch({ type: LOGIN_SUCCESS, payload: JSON.parse(storedUser) });
+    }
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {user && <Topbar user={user} />}
+      <Routes>
+        <Route path="/" element={user ? <Dashboard /> : <Login />} />
+        <Route path="/product" element={<PrivateRoute element={Product} />} />
+        <Route path="/item" element={<PrivateRoute element={Item} />} />
+        <Route path="/cart" element={<PrivateRoute element={Cart} />} />
+        <Route path="/contact" element={<PrivateRoute element={Contact} />} />
+        <Route path="/rental" element={<PrivateRoute element={Rental} />} />
+        <Route path="/category" element={<PrivateRoute element={Category} />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
