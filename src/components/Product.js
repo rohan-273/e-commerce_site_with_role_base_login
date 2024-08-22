@@ -12,7 +12,6 @@ const Product = () => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((response) => {
-        console.log(response, "res");
         setProducts(response.data);
       })
       .catch((error) => {
@@ -25,15 +24,15 @@ const Product = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container">
       <h1>Products</h1>
       <div className="row">
         {products?.map((product) => (
-          <div className="col-md-4" key={product.id}>
-            <div className="card mb-4">
+          <div className="col-md-4 mb-4" key={product.id}>
+            <div className="card h-100">
               <img
                 src={product.image}
-                className="card-img-top"
+                className="card-img-top h-75 p-3"
                 alt={product.title}
               />
               <div className="card-body">

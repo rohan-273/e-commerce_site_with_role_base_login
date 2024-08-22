@@ -22,26 +22,16 @@ const Topbar = ({ user }) => {
               Product
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/item">
-              Item
-            </Link>
-          </li>
           {user.role === "seller" && (
             <>
               <li className="nav-item">
-                <Link className="nav-link" to="/contact">
-                  Contact
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/rental">
-                  Rental
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/category">
                   Category
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/contact">
+                  Contact
                 </Link>
               </li>
             </>

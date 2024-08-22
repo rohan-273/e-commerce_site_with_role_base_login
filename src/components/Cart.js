@@ -48,6 +48,7 @@ const Cart = () => {
                     <img
                       src={item.image}
                       style={{ height: 50, width: 50, marginRight: 10 }}
+                      alt={item.title}
                     />
                     {item.title}
                   </td>
