@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { addToCart } from "../redux/actions/cartActions";
+import { useDispatch } from "react-redux";
 
 const Item = () => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
+  const dispatch = useDispatch();
   const queryParams = new URLSearchParams(location.search);
   const selectedCategory = queryParams.get("category");
 
@@ -23,6 +26,10 @@ const Item = () => {
       });
   }, [selectedCategory]);
 
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <div>
       <div className="container">
@@ -37,12 +44,18 @@ const Item = () => {
                   alt={product.title}
                 />
                 <div className="card-body">
-                  <h5 className="card-title" style={{height: 50}}>{product.title}</h5>
-                  <div className="d-flex justify-content-between">
+                  <h5 className="card-title" style={{ height: 50 }}>
+                    {product.title.length > 40
+                      ? product.title.substring(0, 40) + "..."
+                      : product.title}
+                  </h5>
                   <p className="card-text">${product.price.toFixed(2)}</p>
-                  <span>Rating: {product.rating.rate}</span>
-                  </div>
-                  {/* Add functionality for Add to Cart if needed */}
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             </div>

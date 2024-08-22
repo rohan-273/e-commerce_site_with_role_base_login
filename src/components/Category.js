@@ -11,7 +11,7 @@ const Category = () => {
     <div className="m-5 d-flex">
       <div
         className="card m-3"
-        style={{ width: "18rem", cursor: "pointer" }}
+        style={{ width: "19rem", cursor: "pointer" }}
         onClick={() => handleCategoryClick("men's clothing")}
       >
         <img
@@ -25,7 +25,7 @@ const Category = () => {
       </div>
       <div
         className="card m-3"
-        style={{ width: "18rem", cursor: "pointer" }}
+        style={{ width: "19rem", cursor: "pointer" }}
         onClick={() => handleCategoryClick("jewelery")}
       >
         <img
@@ -39,7 +39,7 @@ const Category = () => {
       </div>
       <div
         className="card m-3"
-        style={{ width: "18rem", cursor: "pointer" }}
+        style={{ width: "19rem", cursor: "pointer" }}
         onClick={() => handleCategoryClick("electronics")}
       >
         <img
@@ -53,7 +53,7 @@ const Category = () => {
       </div>
       <div
         className="card m-3"
-        style={{ width: "18rem", cursor: "pointer" }}
+        style={{ width: "19rem", cursor: "pointer" }}
         onClick={() => handleCategoryClick("women's clothing")}
       >
         <img

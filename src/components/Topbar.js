@@ -11,11 +11,11 @@ const Topbar = ({ user }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light p-4">
       <Link className="navbar-brand" to="/">
         Dashboard
       </Link>
-      <div className="collapse navbar-collapse">
+      <div className="collapse navbar-collapse justify-content-between">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/product">
