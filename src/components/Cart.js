@@ -103,7 +103,7 @@ const Cart = () => {
           </table>
           <div className="text-end">
             <h4>Total Price: ${totalPrice.toFixed(2)}</h4>
-            <button className="btn btn-primary mt-3">
+            <button className="btn btn-primary mt-3 focus-ring py-1 px-2">
               Proceed to Checkout
             </button>
           </div>

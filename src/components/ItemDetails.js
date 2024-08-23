@@ -62,7 +62,7 @@ const ItemDetails = () => {
           </p>
           <div className="mt-4">
             <button
-              className="btn btn-primary"
+              className="btn btn-primary focus-ring py-1 px-2"
               onClick={() => handleAddToCart(product)}
             >
               Add to Cart

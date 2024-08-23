@@ -60,7 +60,7 @@ const Item = () => {
                   </h5>
                   <p className="card-text">${product.price.toFixed(2)}</p>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary focus-ring py-1 px-2"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
