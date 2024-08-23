@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../redux/actions/cartActions";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.items);
 
   const handleQuantityChange = (productId, newQuantity) => {
@@ -22,6 +24,10 @@ const Cart = () => {
     (total, item) => total + item.quantity,
     0
   );
+
+  const handleViewDetails = (id) => {
+    navigate(`/item-details/${id}`);
+  };
 
   return (
     <div className="container mt-4">
@@ -44,7 +50,10 @@ const Cart = () => {
             <tbody>
               {cartItems?.map((item) => (
                 <tr key={item.id}>
-                  <td>
+                  <td
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleViewDetails(item.id)}
+                  >
                     <img
                       src={item.image}
                       style={{ height: 50, width: 50, marginRight: 10 }}
@@ -92,7 +101,12 @@ const Cart = () => {
               ))}
             </tbody>
           </table>
-          <h4 className="text-end">Total Price: ${totalPrice.toFixed(2)}</h4>
+          <div className="text-end">
+            <h4>Total Price: ${totalPrice.toFixed(2)}</h4>
+            <button className="btn btn-primary mt-3">
+              Proceed to Checkout
+            </button>
+          </div>
         </div>
       )}
     </div>

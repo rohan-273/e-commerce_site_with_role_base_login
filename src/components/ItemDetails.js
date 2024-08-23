@@ -5,7 +5,7 @@ import { addToCart } from "../redux/actions/cartActions";
 import { useDispatch } from "react-redux";
 import ReactStarsRating from "react-awesome-stars-rating";
 
-const ItemDetails = ({ value }) => {
+const ItemDetails = () => {
   // Get the product ID from URL
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -35,6 +35,7 @@ const ItemDetails = ({ value }) => {
   const onChangeRating = (value) => {
     console.log(`React Stars Rating value is ${value}`);
   };
+
   return (
     <div className="container mt-5">
       <div className="row">
@@ -52,10 +53,13 @@ const ItemDetails = ({ value }) => {
           <p>
             <strong>Category:</strong> {product.category}
           </p>
-          <ReactStarsRating
-            onChange={onChangeRating}
-            value={product.rating.rate}
-          />
+          <p>
+            <strong>Rating:</strong>{" "}
+            <ReactStarsRating
+              onChange={onChangeRating}
+              value={product.rating.rate}
+            />            
+          </p>
           <div className="mt-4">
             <button
               className="btn btn-primary"
