@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { addToCart } from "../redux/actions/cartActions";
 import { useDispatch } from "react-redux";
 
@@ -8,6 +8,7 @@ const Item = () => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const selectedCategory = queryParams.get("category");
 
@@ -30,6 +31,10 @@ const Item = () => {
     dispatch(addToCart(product));
   };
 
+  const handleViewDetails = (id) => {
+    navigate(`/item-details/${id}`);
+  };
+
   return (
     <div>
       <div className="container">
@@ -37,7 +42,11 @@ const Item = () => {
         <div className="row">
           {products?.map((product) => (
             <div className="col-md-3 mb-4" key={product.id}>
-              <div className="card h-100" style={{ cursor: "pointer" }}>
+              <div
+                className="card h-100"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleViewDetails(product.id)}
+              >
                 <img
                   src={product.image}
                   className="card-img-top h-75 p-3"
@@ -52,7 +61,10 @@ const Item = () => {
                   <p className="card-text">${product.price.toFixed(2)}</p>
                   <button
                     className="btn btn-primary"
-                    onClick={() => handleAddToCart(product)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(product);
+                    }}
                   >
                     Add to Cart
                   </button>

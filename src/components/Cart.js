@@ -27,7 +27,7 @@ const Cart = () => {
     <div className="container mt-4">
       <h1>Cart</h1>
       {cartItems?.length === 0 ? (
-        <p>No products in cart</p>
+        <p>No items in cart</p>
       ) : (
         <div>
           <h4>Total Items: {totalItems}</h4>

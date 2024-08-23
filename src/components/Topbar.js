@@ -17,30 +17,34 @@ const Topbar = ({ user }) => {
       </Link>
       <div className="collapse navbar-collapse justify-content-between">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link className="nav-link" to="/product">
-              Product
-            </Link>
-          </li>
-          {user.role === "seller" && (
+          {user.role === "buyer" && (
             <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/product">
+                  Product
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/category">
                   Category
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/contact">
-                  Contact
+                <Link className="nav-link" to="/cart">
+                  Cart
                 </Link>
               </li>
             </>
           )}
-          <li className="nav-item">
-            <Link className="nav-link" to="/cart">
-              Cart
-            </Link>
-          </li>
+          {user.role === "seller" && (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/addProduct">
+                  Add Product
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
         <button className="btn btn-outline-danger" onClick={handleLogout}>
           Logout
